@@ -12,6 +12,7 @@ module.exports = {
 
 // #4
     return User.create({
+      name: newUser.name,
       email: newUser.email,
       password: hashedPassword
     })
@@ -19,7 +20,7 @@ module.exports = {
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
-          to: 'test@example.com',
+          to: newUser.email,
           from: 'test@example.com',
           subject: 'Sending with SendGrid is Fun',
           text: 'and easy to do anywhere, even with Node.js',
