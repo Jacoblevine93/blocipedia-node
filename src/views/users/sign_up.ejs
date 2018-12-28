@@ -1,4 +1,17 @@
-  <h2>Welcome to Blocipedia</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <% include ../static/partials/navbar.ejs %>
+
+ <main class="container">
+
+  <% include ../static/partials/messages.ejs %>
+    
+  <h2>Sign Up</h2>
    <div class="row">
      <div class="col-md-8">
        <form method="POST" action="/users">
@@ -22,3 +35,9 @@
        </form>
      </div>
    </div>
+ </main>
+ 
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>  
