@@ -1,2 +1,3 @@
 node_modules/
 sengrid.env
+.DS_Store
