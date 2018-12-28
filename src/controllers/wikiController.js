@@ -24,11 +24,15 @@ module.exports = {
          body: req.body.body
        };
        wikiQueries.addWiki(newWiki, (err, wiki) => {
-         if(err){
-           res.redirect(500, "wikis/new");
-         } else {
-           res.redirect(303, `/wikis/${wiki.id}`);
-         }
+if(err){
+  console.log("ERROR: Unable to create Wiki");
+  console.log(err);
+  res.redirect(500, "wikis/new");
+} else {
+  console.log("DEBUG: Wiki created successfully!");
+  console.log(wiki);
+  res.redirect(303, `/wikis/${wiki.id}`);
+}
        });
    },
 

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
        allowNull: false,
        defaultValue: false
      },
-     wikiId: {
+     userId: {
        type: DataTypes.INTEGER,
        allowNull: false
      }     

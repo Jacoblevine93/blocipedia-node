@@ -15,11 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-     }       
+    }    
   }, {});
   User.associate = function(models) {
      User.hasMany(models.Wiki, {
