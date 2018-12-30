@@ -1,5 +1,24 @@
+const staticQueries = require('../db/queries.static.js');
+const Authorizer = require("../policies/application");
+
 module.exports = {
 	index(req,res,next) {
 		res.render('static/index', {title: 'Welcome to Blocipedia'})
-	}
+	},
+  
+   upgradeUser(req, res, next){
+
+     staticQueries.upgradeUser(req, req.body, (err, user) => {
+       if(err || user == null){
+         res.redirect(401, `/upgrade`);
+       } else {
+         res.redirect(`static/index`);
+       }
+     });
+   },
+
+   upgradeForm(req, res, next){
+     res.render("static/upgrade");
+   }
+
 }
