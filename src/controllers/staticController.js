@@ -12,7 +12,7 @@ module.exports = {
        if(err || user == null){
          res.redirect(401, `/upgrade`);
        } else {
-         res.redirect(`static/index`);
+         res.redirect(`/`);
        }
      });
    },

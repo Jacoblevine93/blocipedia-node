@@ -1,15 +1,15 @@
 const User = require("./models").User;
 const bcrypt = require("bcryptjs");
-var stripe = require("stripe")("pk_test_FUajexO4RZY0yG9GpBKtLT2w");
+var stripe = require("stripe")(process.env.SECRET_KEY);
 
 module.exports = {
 
    upgradeUser(req, upgradedUser, callback){
 
-  const token = request.body.stripeToken; // Using Express
+  const token = req.body.stripeToken; // Using Express
 
   const charge = stripe.charges.create({
-  amount: 15.00,
+  amount: 1500,
   currency: 'usd',
   description: 'Example charge',
   source: token,
@@ -24,7 +24,7 @@ module.exports = {
          return callback("User not found");
        }
 
-         user.update(upgradedUser, {
+         user.update({
            role: 'premium'
          })
          .then(() => {
