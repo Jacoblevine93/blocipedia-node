@@ -1,6 +1,6 @@
 const User = require("./models").User;
 const bcrypt = require("bcryptjs");
-var stripe = require("stripe")("sk_test_cURohRRS3XKjTL2Af2vBl9nt");
+var stripe = require("stripe")("pk_test_FUajexO4RZY0yG9GpBKtLT2w");
 
 module.exports = {
 
@@ -9,7 +9,7 @@ module.exports = {
   const token = request.body.stripeToken; // Using Express
 
   const charge = stripe.charges.create({
-  amount: 15,
+  amount: 15.00,
   currency: 'usd',
   description: 'Example charge',
   source: token,
