@@ -35,5 +35,28 @@ module.exports = {
          });
 
      });
-   }
+   },
+
+   downgradeUser(req, downgradedUser, callback){
+// #1
+     return User.findById(req.user.id)
+     .then((user) => {
+
+// #2
+       if(!user){
+         return callback("User not found");
+       }
+
+         user.update({
+           role: 'standard'
+         })
+         .then(() => {
+           callback(null, user);
+         })
+         .catch((err) => {
+           callback(err);
+         });
+
+     });
+   }   
 }   

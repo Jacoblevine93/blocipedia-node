@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head.ejs %>
+  </head>
+  <body>
+
+  	<% include partials/navbar.ejs %>
+
+  	<main class="container">
+
+    <% include ../static/partials/messages.ejs %>
+      
+      <h1>Downgrade Account</h1>
+
+<p> Sorry to watch you go.</p> 
+
+<p>Just click the button below, and we will change your account back to standard.</p>
+
+   <div class="row">
+     <div class="col-md-8">
+       <form method="POST" action="/downgrade">
+         <input type="submit" value="Downgrade" class="btn btn-primary"/>
+       </form>
+     </div>
+   </div>   
+    </main>
+
+  	</main>
+  	
+    <% include partials/baseScripts.ejs %>
+   </body>
+</html>  	

@@ -19,6 +19,21 @@ module.exports = {
 
    upgradeForm(req, res, next){
      res.render("static/upgrade");
-   }
+   },
+
+   downgradeForm(req, res, next){
+     res.render("static/downgrade");
+   },
+
+   downgradeUser(req, res, next){
+
+     staticQueries.downgradeUser(req, req.body, (err, user) => {
+       if(err || user == null){
+         res.redirect(401, `/downgrade`);
+       } else {
+         res.redirect(`/`);
+       }
+     });
+   },      
 
 }

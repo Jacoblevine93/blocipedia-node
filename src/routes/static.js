@@ -5,5 +5,7 @@ const staticController = require('../controllers/staticController');
 router.get('/', staticController.index);
 router.get("/upgrade", staticController.upgradeForm);
 router.post("/upgrade", staticController.upgradeUser);
+router.get("/downgrade", staticController.downgradeForm);
+router.post("/downgrade", staticController.downgradeUser);
 
 module.exports = router;
