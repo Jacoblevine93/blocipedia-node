@@ -58,5 +58,19 @@ module.exports = {
          });
 
      });
+
+     return Wiki.findbyId(req.user.id)
+     .then((wiki) => {
+        wiki.update({
+          private: 'false'
+        })
+         .then(() => {
+           callback(null, wiki);
+         })
+         .catch((err) => {
+           callback(err);
+         });
+     });
+
    }   
 }   
