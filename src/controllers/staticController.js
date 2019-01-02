@@ -12,7 +12,7 @@ module.exports = {
        if(err || user == null){
          res.redirect(401, `/upgrade`);
        } else {
-         res.redirect(`/`);
+         res.redirect(`/wikis`);
        }
      });
    },
@@ -31,9 +31,9 @@ module.exports = {
        if(err || user == null){
          res.redirect(401, `/downgrade`);
        } else {
-         res.redirect(`/`);
+         res.redirect(`/wikis`);
        }
      });
-   }      
+   }           
 
 }

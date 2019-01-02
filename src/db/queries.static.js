@@ -1,4 +1,5 @@
 const User = require("./models").User;
+const Wiki = require("./models").Wiki;
 const bcrypt = require("bcryptjs");
 var stripe = require("stripe")(process.env.SECRET_KEY);
 
@@ -50,6 +51,7 @@ module.exports = {
          user.update({
            role: 'standard'
          })
+
          .then(() => {
            callback(null, user);
          })
@@ -59,11 +61,9 @@ module.exports = {
 
      });
 
-     return Wiki.findbyId(req.user.id)
+     return Wiki
      .then((wiki) => {
-        wiki.update({
-          private: 'false'
-        })
+          wiki.update({ private: false }, { where: {  UserId: req.user.id }})
          .then(() => {
            callback(null, wiki);
          })
