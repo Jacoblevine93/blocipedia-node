@@ -61,16 +61,23 @@ module.exports = {
 
      });
 
+  },        
+
+   downgradeWiki(req, downgradedWiki, callback){
+// #1
      return Wiki
      .then((wiki) => {
-          wiki.update({ private: false }, { where: {  UserId: req.user.id }})
+          console.log(wiki);
+          wiki.update({ private: false }, { where: {  userId: req.user.id }})
          .then(() => {
+          console.log(wiki);
            callback(null, wiki);
          })
          .catch((err) => {
+            console.log(err);          
            callback(err);
          });
-     });
+     });   
 
    }   
 }   
