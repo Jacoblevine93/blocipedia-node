@@ -34,17 +34,6 @@ module.exports = {
          res.redirect(`/wikis`);
        }
      });
-   },
-
-   downgradeWiki(req, res, next){
-
-     staticQueries.downgradeWiki(req, req.body, (err, wiki) => {
-       if(err || wiki == null){
-         res.redirect(401, `/downgrade`);
-       } else {
-         res.redirect(`/wikis`);
-       }
-     });
-   }                   
+   }                  
 
 }

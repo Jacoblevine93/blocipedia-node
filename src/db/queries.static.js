@@ -61,9 +61,6 @@ module.exports = {
 
      });
 
-  },        
-
-   downgradeWiki(req, downgradedWiki, callback){
 // #1
      return Wiki
      .then((wiki) => {
@@ -77,7 +74,8 @@ module.exports = {
             console.log(err);          
            callback(err);
          });
-     });   
+     });      
 
-   }   
+  }        
+  
 }   
