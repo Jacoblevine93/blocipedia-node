@@ -64,6 +64,7 @@ module.exports = {
 // #1
      return Wiki
      .then((wiki) => {
+          console.log("here")
           console.log(wiki);
           wiki.update({ private: false }, { where: {  userId: req.user.id }})
          .then(() => {
