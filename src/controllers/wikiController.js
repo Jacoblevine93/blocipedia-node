@@ -36,19 +36,18 @@ module.exports = {
        });
    },
 
-   show(req, res, next){
-
-//#1
-     wikiQueries.getWiki(req.params.id, (err, wiki) => {
-
-//#2
-       if(err || wiki == null){
-         res.redirect(404, "/");
-       } else {
-         res.render("wikis/show", {wiki});
-       }
-     });
-   },
+  show(req, res, next){
+      wikiQueries.getWiki(req.params.id, (err, wiki) => {
+        var markdownWiki = wiki;
+        markdownWiki.body = markdown.toHTML(markdownWiki.body);
+        
+        if(err || markdownWiki == null){
+          res.redirect(404, "/");
+        } else {
+          res.render("wikis/show", {markdownWiki});
+        }
+      })
+  },
 
    destroy(req, res, next){
 
