@@ -1,5 +1,6 @@
 const Wiki = require('./models').Wiki;
 const User = require("./models").User;
+const Collaborator = require("./models").Collaborator;
 const Authorizer = require("../policies/wiki");
 const markdown = require( "markdown" ).markdown;
 
@@ -36,7 +37,6 @@ module.exports = {
         private: newWiki.private
       })
       .then((wiki) => {
-        console.log(wiki);
         callback(null, wiki);
       })
       .catch((err) => {
@@ -75,12 +75,50 @@ module.exports = {
            fields: Object.keys(updatedWiki)
          })
          .then(() => {
+            console.log(req);
+            console.log(req.body);
+            console.log(req.params);
            callback(null, wiki);
          })
          .catch((err) => {
            callback(err);
          });
      });
-   }
+   },
+
+   addCollaborator(req, callback){
+        console.log(req.params.id)
+
+     return Collaborator.create({
+           wikiId: req.wiki.id,
+           userId: req.params.id,
+           email: req.body.email
+         })
+         .then((collaborator) => {
+           console.log(collaborator);
+           callback(null, collaborator);
+         })
+         .catch((err) => {
+          console.log(err);
+           callback(err);
+         });
+     },
+
+   deleteCollaborator(req, callback){
+
+     return Collaborator.findAll({where: {email: req.body.email} })
+     .then((collaborator) => {
+         collaborator.update({wikiId: null}), {where: {wikiId: req.params.id}}
+         .then((collaborator) => {
+           console.log(collaborator);
+           callback(null, collaborator);
+         })
+         .catch((err) => {
+           console.log(err);
+           callback(err);
+         });
+     });
+   }   
+
 
 }

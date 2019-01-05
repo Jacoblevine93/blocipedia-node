@@ -12,8 +12,12 @@
 
       <h1><%= markdownWiki.title %></h1>
        <a href="/wikis/<%= markdownWiki.id %>/edit" class="btn btn-warning">Edit Wiki</a>
+       <% if(currentUser) { %>
+       <a href="/wikis/<%= markdownWiki.id %>/collaborators" class="btn btn-warning">Collaborators</a>
+       <% } %>
       <form style="display:initial" action="/wikis/<%= markdownWiki.id %>/destroy" method="post">
       <button type="submit" class="btn btn-danger">Delete</button>
+
       </form>
       <p><%= markdownWiki.body %></p>
     

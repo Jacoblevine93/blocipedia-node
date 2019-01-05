@@ -83,6 +83,37 @@ module.exports = {
          res.redirect(`/wikis/${req.params.id}`);
        }
      });
-   }
+   },
+
+   addCollaborator(req, res, next){
+     wikiQueries.addCollaborator(req, (err, collaborator) => {
+       if(err || collaborator == null){
+         res.redirect(401, `/wikis/${req.wiki.id}`);
+       } else {
+         res.redirect(`/wikis/${req.wiki.id}`);
+       }
+     });
+   },   
+
+   deleteCollaborator(req, res, next){
+     wikiQueries.deleteCollaborator(req, (err, collaborator) => {
+       if(err || collaborator == null){
+         res.redirect(401, `/wikis/${req.wiki.id}`);
+       } else {
+         res.redirect(`/wikis/${req.wiki.id}`);
+       }
+     });
+   },
+
+   editCollaborators(req, res, next){
+
+     wikiQueries.getWiki(req.params.id, (err, wiki) => {
+       if(err || wiki == null){
+         res.redirect(404, "/");
+       } else {
+           res.render(`wikis/collaborators`, {wiki});
+      }
+     });
+   }    
 
 }
