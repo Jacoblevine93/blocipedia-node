@@ -17,11 +17,7 @@ module.exports = {
           key: "id",        
           as: "userId"     
          },
-       },  
-      email: {
-      type: Sequelize.STRING,
-      allowNull: false
-     },       
+       },    
       wikiId: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE", 

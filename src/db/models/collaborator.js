@@ -1,10 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Collaborator = sequelize.define('Collaborator', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false

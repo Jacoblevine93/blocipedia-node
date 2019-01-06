@@ -88,9 +88,9 @@ module.exports = {
    addCollaborator(req, res, next){
      wikiQueries.addCollaborator(req, (err, collaborator) => {
        if(err || collaborator == null){
-         res.redirect(401, `/wikis/${req.wiki.id}`);
+         res.redirect(401, `/wikis/${req.params.id}`);
        } else {
-         res.redirect(`/wikis/${req.wiki.id}`);
+         res.redirect(`/wikis/${req.params.id}`);
        }
      });
    },   
@@ -98,9 +98,9 @@ module.exports = {
    deleteCollaborator(req, res, next){
      wikiQueries.deleteCollaborator(req, (err, collaborator) => {
        if(err || collaborator == null){
-         res.redirect(401, `/wikis/${req.wiki.id}`);
+         res.redirect(401, `/wikis/}`);
        } else {
-         res.redirect(`/wikis/${req.wiki.id}`);
+         res.redirect(`/wikis/`);
        }
      });
    },
