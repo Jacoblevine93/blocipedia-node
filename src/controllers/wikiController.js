@@ -98,7 +98,7 @@ module.exports = {
    deleteCollaborator(req, res, next){
      wikiQueries.deleteCollaborator(req, (err, collaborator) => {
        if(err || collaborator == null){
-         res.redirect(401, `/wikis/}`);
+         res.redirect(401, `/wikis/`);
        } else {
          res.redirect(`/wikis/`);
        }

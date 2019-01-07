@@ -88,8 +88,7 @@ module.exports = {
 
    addCollaborator(req, callback){
 
-
-     return User.findAll({where: {email: req.body.email} })
+     return User.findOne({where: {email: req.body.email} })
            .then((user) => {
             console.log(user);
             console.log(user.id);
@@ -109,18 +108,19 @@ module.exports = {
      },
 
    deleteCollaborator(req, callback){
-
-               
-          User.findAll({where: {email: req.body.email} })
+             
+    return User.findOne({where: {email: req.body.email} })
            .then((user) => {
-              var userId = user.id;
-           });
-
-
-      return Collaborator.findAll({where: {userId: user.id} })
-     .then((collaborator) => {
-         collaborator.update({wikiId: null}), {where: {wikiId: req.params.id}}
-         .then((collaborator) => {
+              console.log(user);
+              console.log(user.id);
+              Collaborator.findOne({where: {userId: user.id} })
+           })
+          .then((collaborator) => {
+             console.log(collaborator)
+             collaborator.update({wikiId: null}, {where: {wikiId: req.params.id}})
+             console.log(collaborator)
+          })
+          .then((collaborator) => {
            console.log(collaborator);
            callback(null, collaborator);
          })
@@ -128,7 +128,7 @@ module.exports = {
            console.log(err);
            callback(err);
          });
-     });
+   
    }   
 
 
