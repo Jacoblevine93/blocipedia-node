@@ -24,4 +24,17 @@ module.exports = class WikiPolicy extends ApplicationPolicy {
   destroy() {
     return this.update();
   }
+
+  addCollaborator() {
+    return this.index();
+  }
+
+  deleteCollaborator() {
+    return this.index();
+  } 
+
+  editCollaborator() {
+    return this.index();
+  }   
+
 }

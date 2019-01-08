@@ -114,13 +114,12 @@ module.exports = {
               console.log(user);
               console.log(user.id);
               Collaborator.findOne({where: {userId: user.id} })
-           })
           .then((collaborator) => {
              console.log(collaborator)
-             collaborator.update({wikiId: null}, {where: {wikiId: req.params.id}})
+             collaborator.destroy()
              console.log(collaborator)
-          })
-          .then((collaborator) => {
+          }) }) 
+          .then((res) => {
            console.log(collaborator);
            callback(null, collaborator);
          })
