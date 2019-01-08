@@ -12,12 +12,17 @@
 
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
+          console.log(wiki);
           <% if(wiki.private) { %>
             <% if(currentUser) { %>
-               <% if(currentUser.isAdmin() || currentUser.isPremium() && collaborator.userId === currentUser.userId)  { %>
+               <% if(currentUser.isAdmin() || currentUser.isPremium()) { %>
+               <% wiki.collaborators.forEach((collaborator) => { %>
+              <% if(collaborator.userId === currentUser.userId) { %>
           <li class="list-group-item mb-1">
             <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
           </li>
+          <% } %>
+          <% }) %>
           <% } %>
           <% } %>
        <% } else { %>
