@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
      userId: {
        type: DataTypes.INTEGER,
        allowNull: false
-     }          
+     }              
   }, {});
   Wiki.associate = function(models) {
      Wiki.belongsTo(models.User, {
