@@ -7,7 +7,13 @@ const markdown = require( "markdown" ).markdown;
 module.exports = {
 
 	getAllWikis(callback) {
-		return Wiki.all()
+		return Wiki.all({
+
+     include: [{
+      model: Collaborator,
+      as: "collaborators"
+     }]
+   })
 
 		.then((wikis) => {
 			callback(null, wikis);

@@ -12,16 +12,32 @@
 
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
+          <% console.log(wiki) %>       
           <% if(wiki.private) { %>
             <% if(currentUser) { %>
-               <% if(currentUser.isAdmin() || currentUser.isPremium()) { %>
-              <% if(collaborator.userId === currentUser.userId) { %>
-          <li class="list-group-item mb-1">
-            <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-          </li>
-          <% } %>
-          <% }) %>
-          <% } %>
+               <% console.log(currentUser.id) %>
+               <% if(currentUser.isAdmin() || currentUser.isPremium()) { %> 
+               <% if(currentUser.isPremium() && currentUser.id === wiki.userId) { %>
+                  <li class="list-group-item mb-1">
+                    <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+                  </li>    
+               <% } %>                
+               <% if(currentUser.isPremium() && currentUser.id !== wiki.userId && wiki.collaborators.length !== 0) { %>
+                <% wiki.collaborators.forEach((collaborator) => { %>
+                  <% console.log(collaborator) %> 
+                  <% if (collaborator.userId === currentUser.id) { %>   
+                    <li class="list-group-item mb-1">
+                      <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+                    </li>
+                  <% } %>
+                <% }) %>
+              <% } %>
+              <% if(currentUser.isAdmin()) { %>
+                    <li class="list-group-item mb-1">
+                      <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+                    </li>
+              <% } %>      
+          <% } %>  
           <% } %>
        <% } else { %>
               <li class="list-group-item mb-1">
